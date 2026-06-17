@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dott. Stabile">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<title>Assistente Dott. Stabile AI</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f0f4f8; min-height: 100vh; color: #1a202c;
+}
+.screen { display: none; padding: 20px; min-height: 100vh; }
+.screen.active { display: flex; flex-direction: column; }
+
+#screen-search {
+  justify-content: center; align-items: center;
+  background: linear-gradient(135deg, #1a4a8a, #2563eb); position: relative;
+}
+.logo { color: white; text-align: center; margin-bottom: 36px; }
+.logo h1 { font-size: 24px; font-weight: 700; }
+.logo p  { font-size: 14px; opacity: 0.8; margin-top: 4px; }
+.search-box {
+  background: white; border-radius: 20px; padding: 24px;
+  width: 100%; max-width: 380px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.search-box h2 { font-size: 16px; color: #4a5568; margin-bottom: 16px; text-align: center; }
+.input-group { display: flex; gap: 10px; margin-bottom: 16px; }
+.input-group input {
+  flex: 1; border: 2px solid #e2e8f0; border-radius: 12px;
+  padding: 14px 16px; font-size: 16px; outline: none; transition: border-color 0.2s;
+}
+.input-group input:focus { border-color: #2563eb; }
+.btn-mic {
+  width: 52px; height: 52px; border-radius: 12px; border: none;
+  background: #2563eb; color: white; font-size: 22px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.btn-mic.listening { background: #dc2626; animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+.btn-primary {
+  width: 100%; padding: 16px; background: #2563eb; color: white;
+  border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;
+}
+.status-msg { text-align: center; font-size: 13px; color: #718096; margin-top: 12px; min-height: 20px; }
+.status-msg.error { color: #dc2626; }
+.config-icon {
+  position: absolute; top: 20px; right: 20px;
+  background: rgba(255,255,255,0.2); border: none; border-radius: 10px;
+  width: 38px; height: 38px; font-size: 18px; cursor: pointer; color: white;
+  display: flex; align-items: center; justify-content: center;
+}
+.top-bar { display: flex; align-items: center; gap: 12px; padding: 16px 0 20px; }
+.btn-back {
+  width: 40px; height: 40px; border-radius: 10px; border: none;
+  background: #e2e8f0; font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.top-bar h2 { font-size: 18px; font-weight: 700; flex: 1; }
+#screen-card { background: #f0f4f8; }
+.patient-header {
+  background: linear-gradient(135deg, #1a4a8a, #2563eb);
+  border-radius: 16px; padding: 20px; color: white; margin-bottom: 16px;
+}
+.patient-name { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.patient-sub  { font-size: 14px; opacity: 0.85; }
+.card-section {
+  background: white; border-radius: 16px; padding: 16px;
+  margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.card-section h3 {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8px; color: #2563eb; margin-bottom: 10px;
+}
+.card-value { font-size: 15px; color: #2d3748; line-height: 1.5; }
+.card-value.empty { color: #a0aec0; font-style: italic; }
+.tag {
+  display: inline-block; background: #ebf5ff; color: #1e40af;
+  border-radius: 8px; padding: 4px 10px; font-size: 13px; margin: 3px 3px 3px 0; font-weight: 500;
+}
+.tag.alert { background: #fff5f5; color: #c53030; }
+.visit-item {
+  display: flex; align-items: center; gap: 12px; padding: 10px 0;
+  border-bottom: 1px solid #f0f4f8; cursor: pointer;
+}
+.visit-item:last-child { border-bottom: none; }
+.visit-date   { font-size: 13px; font-weight: 600; color: #2563eb; width: 80px; flex-shrink: 0; }
+.visit-motivo { font-size: 13px; color: #4a5568; flex: 1; }
+.visit-arrow  { font-size: 12px; color: #a0aec0; }
+.btn-secretary {
+  width: 100%; padding: 18px; background: #059669; color: white;
+  border: none; border-radius: 16px; font-size: 17px; font-weight: 700;
+  cursor: pointer; margin-top: 8px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  box-shadow: 0 4px 15px rgba(5,150,105,0.3);
+}
+#screen-secretary { background: #f0f4f8; }
+.sec-box {
+  background: white; border-radius: 16px; padding: 20px;
+  margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.sec-box h3 { font-size: 14px; color: #4a5568; margin-bottom: 8px; font-weight: 600; }
+.sec-patient-name { font-size: 18px; font-weight: 700; }
+.btn-mic-large {
+  width: 80px; height: 80px; border-radius: 50%; border: none;
+  background: #2563eb; color: white; font-size: 32px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+  box-shadow: 0 8px 25px rgba(37,99,235,0.4);
+}
+.btn-mic-large.listening { background: #dc2626; animation: pulse 1s infinite; }
+.instruction { text-align: center; font-size: 14px; color: #718096; margin-bottom: 20px; line-height: 1.5; }
+.message-preview {
+  background: #f7fafc; border: 2px solid #e2e8f0; border-radius: 12px;
+  padding: 14px; font-size: 15px; color: #2d3748; min-height: 80px;
+  line-height: 1.5; margin-bottom: 16px;
+}
+.message-preview.empty { color: #a0aec0; font-style: italic; }
+textarea.message-edit {
+  width: 100%; background: #f7fafc; border: 2px solid #2563eb;
+  border-radius: 12px; padding: 14px; font-size: 15px; color: #2d3748;
+  min-height: 100px; line-height: 1.5; font-family: inherit; resize: vertical;
+  outline: none; margin-bottom: 16px;
+}
+.btn-send {
+  width: 100%; padding: 18px; background: #059669; color: white;
+  border: none; border-radius: 16px; font-size: 17px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+  box-shadow: 0 4px 15px rgba(5,150,105,0.3); margin-bottom: 12px;
+}
+.btn-send:disabled { background: #a0aec0; box-shadow: none; cursor: default; }
+.btn-outline {
+  width: 100%; padding: 14px; background: transparent; color: #2563eb;
+  border: 2px solid #2563eb; border-radius: 16px;
+  font-size: 15px; font-weight: 600; cursor: pointer; margin-bottom: 12px;
+}
+#screen-confirm {
+  justify-content: center; align-items: center;
+  text-align: center; background: #f0f4f8;
+}
+.confirm-icon  { font-size: 64px; margin-bottom: 20px; }
+.confirm-title { font-size: 22px; font-weight: 700; color: #059669; margin-bottom: 10px; }
+.confirm-sub   { font-size: 15px; color: #718096; margin-bottom: 40px; }
+.btn-home {
+  padding: 16px 40px; background: #2563eb; color: white;
+  border: none; border-radius: 16px; font-size: 16px; font-weight: 600; cursor: pointer;
+}
+#screen-config { background: #f0f4f8; }
+.config-card {
+  background: white; border-radius: 16px; padding: 20px;
+  margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.config-card label {
+  display: block; font-size: 13px; font-weight: 600; color: #4a5568;
+  margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.config-card input {
+  width: 100%; border: 2px solid #e2e8f0; border-radius: 10px;
+  padding: 12px; font-size: 14px; outline: none;
+}
+.config-card input:focus { border-color: #2563eb; }
+.config-card .hint { font-size: 12px; color: #718096; margin-top: 6px; line-height: 1.4; }
+.btn-save-config {
+  width: 100%; padding: 16px; background: #2563eb; color: white;
+  border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 8px;
+}
+</style>
+</head>
+<body>
+
+<div id="screen-search" class="screen active">
+  <button class="config-icon" onclick="showConfig()">⚙️</button>
+  <div class="logo">
+    <h1>🏥 Studio Stabile</h1>
+    <p>Gestione Pazienti</p>
+  </div>
+  <div class="search-box">
+    <h2>Cerca un paziente</h2>
+    <div class="input-group">
+      <input type="text" id="search-input" placeholder="Nome e cognome…"
+             onkeydown="if(event.key==='Enter') searchPatient()" autocomplete="off">
+      <button class="btn-mic" id="btn-mic-search" onclick="startVoiceSearch()">🎤</button>
+    </div>
+    <button class="btn-primary" onclick="searchPatient()">Cerca paziente</button>
+    <div class="status-msg" id="search-status"></div>
+  </div>
+</div>
+
+<div id="screen-card" class="screen">
+  <div class="top-bar">
+    <button class="btn-back" onclick="showScreen('search')">←</button>
+    <h2>Scheda Paziente</h2>
+  </div>
+  <div class="patient-header">
+    <div class="patient-name" id="card-nome">—</div>
+    <div class="patient-sub"  id="card-sub">—</div>
+  </div>
+  <div class="card-section">
+    <h3>🩺 Patologie</h3>
+    <div class="card-value" id="card-patologie">—</div>
+  </div>
+  <div class="card-section">
+    <h3>⚠️ Allergie</h3>
+    <div class="card-value" id="card-allergie">—</div>
+  </div>
+  <div class="card-section">
+    <h3>🔪 Interventi Precedenti</h3>
+    <div class="card-value" id="card-interventi">—</div>
+  </div>
+  <div class="card-section">
+    <h3>📋 Ultima Visita — <span id="card-data-ultima"></span></h3>
+    <div class="card-value" id="card-motivo">—</div>
+    <div id="card-note" style="margin-top:6px;font-size:13px;color:#718096;"></div>
+  </div>
+  <div class="card-section" id="section-precedenti" style="display:none">
+    <h3>📅 Visite Precedenti</h3>
+    <div id="card-visite-list"></div>
+  </div>
+  <button class="btn-secretary" onclick="showSecretary()">✉️ Scrivi alla Segreteria</button>
+</div>
+
+<div id="screen-secretary" class="screen">
+  <div class="top-bar">
+    <button class="btn-back" onclick="showScreen('card')">←</button>
+    <h2>Messaggio Segreteria</h2>
+  </div>
+  <div class="sec-box">
+    <h3>Paziente</h3>
+    <div class="sec-patient-name" id="sec-patient-name">—</div>
+  </div>
+  <div class="sec-box">
+    <h3>Cosa comunicare?</h3>
+    <p class="instruction">Tocca il microfono e ditta il messaggio.<br>Es: "Fissa appuntamento giovedì alle 11" o "Richiama il paziente"</p>
+    <button class="btn-mic-large" id="btn-mic-sec" onclick="startVoiceSecretary()">🎤</button>
+    <div id="message-display" class="message-preview empty">Il messaggio apparirà qui…</div>
+  </div>
+  <button class="btn-outline" id="btn-edit-msg" onclick="editMessage()" style="display:none">✏️ Modifica testo</button>
+  <button class="btn-send" id="btn-send" onclick="sendToSecretary()" disabled>📤 Invia alla Segreteria</button>
+</div>
+
+<div id="screen-confirm" class="screen">
+  <div class="confirm-icon">✅</div>
+  <div class="confirm-title">Messaggio inviato!</div>
+  <div class="confirm-sub">La segreteria ha ricevuto le istruzioni</div>
+  <button class="btn-home" onclick="goHome()">Nuova ricerca</button>
+</div>
+
+<div id="screen-config" class="screen">
+  <div class="top-bar">
+    <button class="btn-back" onclick="showScreen('search')">←</button>
+    <h2>⚙️ Configurazione</h2>
+  </div>
+  <div class="config-card">
+    <label>URL Google Apps Script</label>
+    <input type="url" id="cfg-script-url" placeholder="https://script.google.com/macros/s/.../exec">
+    <p class="hint">Incolla qui l'URL del Web App pubblicato su script.google.com</p>
+  </div>
+  <div class="config-card">
+    <label>Webhook Zapier (Segreteria)</label>
+    <input type="url" id="cfg-webhook-url" placeholder="https://hooks.zapier.com/hooks/catch/...">
+    <p class="hint">Lo creiamo insieme nel prossimo passaggio con Zapier</p>
+  </div>
+  <button class="btn-save-config" onclick="saveConfig()">💾 Salva</button>
+  <div class="status-msg" id="config-status" style="margin-top:12px;"></div>
+</div>
+
+<script>
+const SECRET_TOKEN = 'ZCq3wd0FJzsbEFHk_qXxdg';
+let CONFIG = {
+  scriptUrl:  localStorage.getItem('scriptUrl')  || '',
+  webhookUrl: localStorage.getItem('webhookUrl') || ''
+};
+let currentPatient = null, allVisits = [], secretaryMessage = '';
+
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  window.scrollTo(0, 0);
+}
+function showConfig() {
+  document.getElementById('cfg-script-url').value  = CONFIG.scriptUrl;
+  document.getElementById('cfg-webhook-url').value = CONFIG.webhookUrl;
+  showScreen('config');
+}
+function saveConfig() {
+  CONFIG.scriptUrl  = document.getElementById('cfg-script-url').value.trim();
+  CONFIG.webhookUrl = document.getElementById('cfg-webhook-url').value.trim();
+  localStorage.setItem('scriptUrl',  CONFIG.scriptUrl);
+  localStorage.setItem('webhookUrl', CONFIG.webhookUrl);
+  document.getElementById('config-status').textContent = '✅ Salvato!';
+  setTimeout(() => showScreen('search'), 1000);
+}
+function goHome() {
+  currentPatient = null; allVisits = []; secretaryMessage = '';
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-status').textContent = '';
+  resetSecretaryUI();
+  showScreen('search');
+}
+
+async function searchPatient() {
+  const query  = document.getElementById('search-input').value.trim();
+  const status = document.getElementById('search-status');
+  if (!query) { status.textContent='Inserisci il nome del paziente'; status.className='status-msg error'; return; }
+  if (!CONFIG.scriptUrl) { status.textContent='⚙️ Configura prima il database (ingranaggio)'; status.className='status-msg error'; return; }
+  status.textContent='🔍 Ricerca in corso…'; status.className='status-msg';
+  try {
+    const url = `${CONFIG.scriptUrl}?token=${encodeURIComponent(SECRET_TOKEN)}&q=${encodeURIComponent(query)}`;
+    const res  = await fetch(url);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    if (!data.patients || data.patients.length === 0) {
+      status.textContent='❌ Nessun paziente trovato'; status.className='status-msg error'; return;
+    }
+    allVisits = data.patients; currentPatient = data.patients[0];
+    status.textContent=''; showPatientCard();
+  } catch(e) { status.textContent='Errore: '+e.message; status.className='status-msg error'; }
+}
+
+function showPatientCard() {
+  const p = currentPatient;
+  const nome = [p.nome, p.cognome].filter(Boolean).join(' ') || p.nome || '—';
+  document.getElementById('card-nome').textContent = nome;
+  document.getElementById('card-sub').textContent  = (p.eta?p.eta+' anni':'') + (p.telefono?'  •  '+p.telefono:'');
+  document.getElementById('card-data-ultima').textContent = p.data_visita || '';
+  setCardValue('card-patologie',  p.patologie);
+  setCardValue('card-allergie',   p.allergie, true);
+  setCardValue('card-interventi', p.interventi_precedenti||p.interventi);
+  setCardValue('card-motivo',     p.motivo_visita||p.motivo);
+  document.getElementById('card-note').textContent = p.note || '';
+  document.getElementById('sec-patient-name').textContent = nome;
+
+  const precedenti = allVisits.slice(1);
+  const secEl = document.getElementById('section-precedenti');
+  const listEl = document.getElementById('card-visite-list');
+  listEl.innerHTML = '';
+  if (precedenti.length > 0) {
+    secEl.style.display = 'block';
+    precedenti.forEach((v, i) => {
+      const div = document.createElement('div');
+      div.className = 'visit-item';
+      div.innerHTML = `<span class="visit-date">${v.data_visita||'—'}</span><span class="visit-motivo">${v.motivo_visita||v.motivo||'—'}</span><span class="visit-arrow">›</span>`;
+      div.onclick = () => showVisitDetail(i+1);
+      listEl.appendChild(div);
+    });
+  } else { secEl.style.display='none'; }
+  showScreen('card');
+}
+
+function showVisitDetail(idx) {
+  const v = allVisits[idx];
+  document.getElementById('card-data-ultima').textContent = v.data_visita||'';
+  setCardValue('card-motivo', v.motivo_visita||v.motivo);
+  document.getElementById('card-note').textContent = v.note||'';
+  window.scrollTo(0,0);
+}
+
+function setCardValue(id, value, isAlert) {
+  const el = document.getElementById(id);
+  if (!value || ['—','nessuna','nessuno',''].includes((value||'').toLowerCase())) {
+    el.textContent='Nessuna'; el.className='card-value empty'; return;
+  }
+  el.className='card-value'; el.innerHTML='';
+  value.split(/[,;\/]/).map(s=>s.trim()).filter(Boolean).forEach(item => {
+    const span = document.createElement('span');
+    span.className = 'tag'+(isAlert?' alert':'');
+    span.textContent = item;
+    el.appendChild(span);
+  });
+}
+
+function showSecretary() { resetSecretaryUI(); showScreen('secretary'); }
+function resetSecretaryUI() {
+  secretaryMessage='';
+  const disp=document.getElementById('message-display');
+  disp.textContent='Il messaggio apparirà qui…'; disp.className='message-preview empty'; disp.style.display='block';
+  document.getElementById('btn-send').disabled=true;
+  document.getElementById('btn-edit-msg').style.display='none';
+  const ta=document.getElementById('msg-textarea'); if(ta) ta.remove();
+}
+function editMessage() {
+  const disp=document.getElementById('message-display');
+  const existingTA=document.getElementById('msg-textarea');
+  if(existingTA){
+    secretaryMessage=existingTA.value; existingTA.remove();
+    disp.textContent=secretaryMessage; disp.className='message-preview'; disp.style.display='block';
+    document.getElementById('btn-edit-msg').textContent='✏️ Modifica testo';
+    document.getElementById('btn-send').disabled=!secretaryMessage.trim(); return;
+  }
+  const ta=document.createElement('textarea'); ta.id='msg-textarea'; ta.className='message-edit'; ta.value=secretaryMessage;
+  ta.addEventListener('input',()=>{ secretaryMessage=ta.value; document.getElementById('btn-send').disabled=!secretaryMessage.trim(); });
+  disp.style.display='none'; disp.parentNode.insertBefore(ta, disp.nextSibling);
+  document.getElementById('btn-edit-msg').textContent='✅ Usa questo testo'; ta.focus();
+}
+async function sendToSecretary() {
+  if(!secretaryMessage.trim()) return;
+  const btn=document.getElementById('btn-send');
+  btn.disabled=true; btn.textContent='⏳ Invio…';
+  const nome=currentPatient?([currentPatient.nome,currentPatient.cognome].filter(Boolean).join(' ')||currentPatient.nome||''):'';
+  const payload={
+    paziente:nome, messaggio:secretaryMessage,
+    eta:currentPatient?.eta||'', patologie:currentPatient?.patologie||'',
+    allergie:currentPatient?.allergie||'', telefono:currentPatient?.telefono||'',
+    data_invio:new Date().toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'})
+  };
+  if(CONFIG.webhookUrl){ try{ await fetch(CONFIG.webhookUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }catch(e){console.error(e);} }
+  showScreen('confirm');
+}
+
+function getSR() {
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR) return null;
+  const r=new SR(); r.lang='it-IT'; r.interimResults=false; r.maxAlternatives=1; return r;
+}
+function startVoiceSearch() {
+  const btn=document.getElementById('btn-mic-search');
+  const status=document.getElementById('search-status');
+  const input=document.getElementById('search-input');
+  const r=getSR();
+  if(!r){ status.textContent='Dettatura non disponibile — scrivi manualmente'; status.className='status-msg error'; return; }
+  btn.classList.add('listening'); status.textContent='🎤 Sto ascoltando…'; status.className='status-msg';
+  r.onresult=e=>{ input.value=e.results[0][0].transcript; btn.classList.remove('listening'); status.textContent=''; setTimeout(searchPatient,300); };
+  r.onerror=()=>{ btn.classList.remove('listening'); status.textContent='Non ho sentito. Riprova.'; status.className='status-msg error'; };
+  r.onend=()=>btn.classList.remove('listening');
+  r.start();
+}
+function startVoiceSecretary() {
+  const btn=document.getElementById('btn-mic-sec');
+  const disp=document.getElementById('message-display');
+  const r=getSR();
+  if(!r){ editMessage(); return; }
+  btn.classList.add('listening'); disp.textContent='🎤 Sto ascoltando…'; disp.className='message-preview'; disp.style.display='block';
+  r.onresult=e=>{
+    secretaryMessage=e.results[0][0].transcript;
+    disp.textContent=secretaryMessage; disp.className='message-preview';
+    btn.classList.remove('listening');
+    document.getElementById('btn-send').disabled=false;
+    document.getElementById('btn-edit-msg').style.display='block';
+  };
+  r.onerror=()=>{ btn.classList.remove('listening'); disp.textContent='Non ho sentito. Riprova.'; };
+  r.onend=()=>btn.classList.remove('listening');
+  r.start();
+}
+
+window.onload=()=>{ if(!CONFIG.scriptUrl) document.getElementById('search-status').textContent='⚙️ Prima configura il database (ingranaggio in alto a destra)'; };
+</script>
+</body>
+</html>
