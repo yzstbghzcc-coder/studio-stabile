@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Dott. Stabile">
-<title>Studio Stabile</title>
+<title>Assistente Dott. Stabile AI</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f4f8;min-height:100vh;color:#1a202c}
@@ -82,7 +82,7 @@ textarea.message-edit{width:100%;background:#f7fafc;border:2px solid #2563eb;bor
   <div class="search-box">
     <h2>Cerca un paziente</h2>
     <div class="input-group">
-      <input type="text" id="search-input" placeholder="Nome e cognome..." onkeydown="if(event.key==='Enter')searchPatient()" autocomplete="off">
+      <input type="text" id="search-input" placeholder="Nome e cognome…" onkeydown="if(event.key==='Enter')searchPatient()" autocomplete="off">
       <button class="btn-mic" id="btn-mic-search" onclick="startVoiceSearch()">🎤</button>
     </div>
     <button class="btn-primary" onclick="searchPatient()">Cerca paziente</button>
@@ -99,12 +99,12 @@ textarea.message-edit{width:100%;background:#f7fafc;border:2px solid #2563eb;bor
     <div class="patient-name" id="card-nome">—</div>
     <div class="patient-sub" id="card-sub">—</div>
   </div>
-  <div class="card-section"><h3>🩺 Patologie</h3><div class="card-value" id="card-patologie"></div></div>
-  <div class="card-section"><h3>⚠️ Allergie</h3><div class="card-value" id="card-allergie"></div></div>
-  <div class="card-section"><h3>🔪 Interventi Precedenti</h3><div class="card-value" id="card-interventi"></div></div>
+  <div class="card-section"><h3>🩺 Patologie</h3><div class="card-value" id="card-patologie">—</div></div>
+  <div class="card-section"><h3>⚠️ Allergie</h3><div class="card-value" id="card-allergie">—</div></div>
+  <div class="card-section"><h3>🔪 Interventi Precedenti</h3><div class="card-value" id="card-interventi">—</div></div>
   <div class="card-section">
     <h3>📋 Ultima Visita — <span id="card-data-ultima"></span></h3>
-    <div class="card-value" id="card-motivo"></div>
+    <div class="card-value" id="card-motivo">—</div>
     <div id="card-note" style="margin-top:6px;font-size:13px;color:#718096"></div>
   </div>
   <div class="card-section" id="section-precedenti" style="display:none">
@@ -124,7 +124,7 @@ textarea.message-edit{width:100%;background:#f7fafc;border:2px solid #2563eb;bor
     <h3>Cosa comunicare?</h3>
     <p class="instruction">Tocca il microfono e ditta il messaggio.</p>
     <button class="btn-mic-large" id="btn-mic-sec" onclick="startVoiceSecretary()">🎤</button>
-    <div id="message-display" class="message-preview empty">Il messaggio apparira qui...</div>
+    <div id="message-display" class="message-preview empty">Il messaggio apparirà qui…</div>
   </div>
   <button class="btn-outline" id="btn-edit-msg" onclick="editMessage()" style="display:none">✏️ Modifica testo</button>
   <button class="btn-send" id="btn-send" onclick="sendToSecretary()" disabled>📤 Invia alla Segreteria</button>
@@ -143,9 +143,9 @@ textarea.message-edit{width:100%;background:#f7fafc;border:2px solid #2563eb;bor
     <h2>⚙️ Configurazione</h2>
   </div>
   <div class="config-card">
-    <label>URL Google Apps Script</label>
-    <input type="url" id="cfg-script-url" placeholder="https://script.google.com/macros/s/.../exec">
-    <p class="hint">URL del Web App su script.google.com</p>
+    <label>URL Proxy (Cloudflare Worker)</label>
+    <input type="url" id="cfg-script-url" placeholder="https://studio-stabile.sknpz2dwfj.workers.dev">
+    <p class="hint">URL del Worker Cloudflare che fa da proxy</p>
   </div>
   <div class="config-card">
     <label>Webhook Zapier (Segreteria)</label>
@@ -158,13 +158,15 @@ textarea.message-edit{width:100%;background:#f7fafc;border:2px solid #2563eb;bor
 
 <script>
 var SECRET_TOKEN='ZCq3wd0FJzsbEFHk_qXxdg';
-var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwVZBdYbTo3NoAb3HN-YL6FQNDuJH5dkVU4ykCwmIhaZD7jcxO8N8han8lJwmHFaPqBkA/exec';
-var CONFIG={scriptUrl:localStorage.getItem('scriptUrl')||SCRIPT_URL,webhookUrl:localStorage.getItem('webhookUrl')||''};
+var CONFIG={
+  scriptUrl:localStorage.getItem('scriptUrl')||'https://studio-stabile.sknpz2dwfj.workers.dev',
+  webhookUrl:localStorage.getItem('webhookUrl')||''
+};
 var currentPatient=null,allVisits=[],secretaryMessage='';
 
 function showScreen(n){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});document.getElementById('screen-'+n).classList.add('active');window.scrollTo(0,0)}
 function showConfig(){document.getElementById('cfg-script-url').value=CONFIG.scriptUrl;document.getElementById('cfg-webhook-url').value=CONFIG.webhookUrl;showScreen('config')}
-function saveConfig(){CONFIG.scriptUrl=document.getElementById('cfg-script-url').value.trim();CONFIG.webhookUrl=document.getElementById('cfg-webhook-url').value.trim();localStorage.setItem('scriptUrl',CONFIG.scriptUrl);localStorage.setItem('webhookUrl',CONFIG.webhookUrl);document.getElementById('config-status').textContent='Salvato!';setTimeout(function(){showScreen('search')},1000)}
+function saveConfig(){CONFIG.scriptUrl=document.getElementById('cfg-script-url').value.trim();CONFIG.webhookUrl=document.getElementById('cfg-webhook-url').value.trim();localStorage.setItem('scriptUrl',CONFIG.scriptUrl);localStorage.setItem('webhookUrl',CONFIG.webhookUrl);document.getElementById('config-status').textContent='✅ Salvato!';setTimeout(function(){showScreen('search')},1000)}
 function goHome(){currentPatient=null;allVisits=[];secretaryMessage='';document.getElementById('search-input').value='';document.getElementById('search-status').textContent='';resetSecretaryUI();showScreen('search')}
 
 function searchPatient(){
@@ -172,25 +174,17 @@ function searchPatient(){
   var status=document.getElementById('search-status');
   if(!query){status.textContent='Inserisci il nome del paziente';status.className='status-msg error';return}
   if(!CONFIG.scriptUrl){status.textContent='Configura prima il database';status.className='status-msg error';return}
-  status.textContent='Ricerca in corso...';status.className='status-msg';
-  var old=document.getElementById('_jp');
-  if(old)old.parentNode.removeChild(old);
-  if(window._jpcb)try{delete window._jpcb}catch(e){}
-  window._jpcb=function(data){
-    var s=document.getElementById('_jp');
-    if(s)s.parentNode.removeChild(s);
-    try{delete window._jpcb}catch(e){}
-    if(data.error){status.textContent='Errore: '+data.error;status.className='status-msg error';return}
-    if(!data.patients||data.patients.length===0){status.textContent='Nessun paziente trovato';status.className='status-msg error';return}
-    allVisits=data.patients;currentPatient=data.patients[0];
-    status.textContent='';showPatientCard();
-  };
-  var sc=document.createElement('script');
-  sc.id='_jp';
-  sc.src=CONFIG.scriptUrl+'?token='+encodeURIComponent(SECRET_TOKEN)+'&q='+encodeURIComponent(query)+'&callback=_jpcb';
-  sc.onerror=function(){if(sc.parentNode)sc.parentNode.removeChild(sc);try{delete window._jpcb}catch(e){}status.textContent='Errore connessione';status.className='status-msg error'};
-  document.head.appendChild(sc);
-  setTimeout(function(){if(window._jpcb){var s=document.getElementById('_jp');if(s&&s.parentNode)s.parentNode.removeChild(s);try{delete window._jpcb}catch(e){}status.textContent='Timeout - riprova';status.className='status-msg error'}},10000);
+  status.textContent='🔍 Ricerca in corso…';status.className='status-msg';
+  var url=CONFIG.scriptUrl+'?token='+encodeURIComponent(SECRET_TOKEN)+'&q='+encodeURIComponent(query);
+  fetch(url)
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+    .then(function(data){
+      if(data.error){status.textContent='Errore: '+data.error;status.className='status-msg error';return}
+      if(!data.patients||data.patients.length===0){status.textContent='❌ Nessun paziente trovato';status.className='status-msg error';return}
+      allVisits=data.patients;currentPatient=data.patients[0];
+      status.textContent='';showPatientCard();
+    })
+    .catch(function(){status.textContent='Errore di connessione';status.className='status-msg error'});
 }
 
 function showPatientCard(){
@@ -236,7 +230,7 @@ function showSecretary(){resetSecretaryUI();showScreen('secretary')}
 function resetSecretaryUI(){
   secretaryMessage='';
   var disp=document.getElementById('message-display');
-  disp.textContent='Il messaggio apparira qui...';disp.className='message-preview empty';disp.style.display='block';
+  disp.textContent='Il messaggio apparirà qui…';disp.className='message-preview empty';disp.style.display='block';
   document.getElementById('btn-send').disabled=true;
   document.getElementById('btn-edit-msg').style.display='none';
   var ta=document.getElementById('msg-ta');if(ta&&ta.parentNode)ta.parentNode.removeChild(ta);
@@ -252,11 +246,11 @@ function editMessage(){
 }
 function sendToSecretary(){
   if(!secretaryMessage.trim())return;
-  var btn=document.getElementById('btn-send');btn.disabled=true;btn.textContent='Invio...';
+  var btn=document.getElementById('btn-send');btn.disabled=true;btn.textContent='⏳ Invio…';
   var nome=currentPatient?[currentPatient.nome,currentPatient.cognome].filter(Boolean).join(' '):'';
   var payload={paziente:nome,messaggio:secretaryMessage,eta:(currentPatient&&currentPatient.eta)||'',patologie:(currentPatient&&currentPatient.patologie)||'',allergie:(currentPatient&&currentPatient.allergie)||'',telefono:(currentPatient&&currentPatient.telefono)||''};
   if(CONFIG.webhookUrl){
-    var xhr=new XMLHttpRequest();xhr.open('POST',CONFIG.webhookUrl);xhr.setRequestHeader('Content-Type','application/json');xhr.send(JSON.stringify(payload));
+    fetch(CONFIG.webhookUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
   }
   showScreen('confirm');
 }
@@ -268,7 +262,7 @@ function startVoiceSearch(){
   var input=document.getElementById('search-input');
   var r=getSR();
   if(!r){status.textContent='Dettatura non disponibile';status.className='status-msg error';return}
-  btn.classList.add('listening');status.textContent='Sto ascoltando...';status.className='status-msg';
+  btn.classList.add('listening');status.textContent='🎤 Sto ascoltando…';status.className='status-msg';
   r.onresult=function(e){input.value=e.results[0][0].transcript;btn.classList.remove('listening');status.textContent='';setTimeout(searchPatient,300)};
   r.onerror=function(){btn.classList.remove('listening');status.textContent='Non ho sentito. Riprova.';status.className='status-msg error'};
   r.onend=function(){btn.classList.remove('listening')};
@@ -279,14 +273,14 @@ function startVoiceSecretary(){
   var disp=document.getElementById('message-display');
   var r=getSR();
   if(!r){editMessage();return}
-  btn.classList.add('listening');disp.textContent='Sto ascoltando...';disp.className='message-preview';disp.style.display='block';
+  btn.classList.add('listening');disp.textContent='🎤 Sto ascoltando…';disp.className='message-preview';disp.style.display='block';
   r.onresult=function(e){secretaryMessage=e.results[0][0].transcript;disp.textContent=secretaryMessage;disp.className='message-preview';btn.classList.remove('listening');document.getElementById('btn-send').disabled=false;document.getElementById('btn-edit-msg').style.display='block'};
   r.onerror=function(){btn.classList.remove('listening');disp.textContent='Non ho sentito. Riprova.'};
   r.onend=function(){btn.classList.remove('listening')};
   r.start();
 }
 
-window.onload=function(){if(!CONFIG.scriptUrl)document.getElementById('search-status').textContent='Configura il database (icona ingranaggio in alto a destra)'};
+window.onload=function(){if(!CONFIG.scriptUrl)document.getElementById('search-status').textContent='⚙️ Configura il database (ingranaggio in alto a destra)'};
 </script>
 </body>
 </html>
