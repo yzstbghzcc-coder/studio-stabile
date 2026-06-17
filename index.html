@@ -6,72 +6,72 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Dott. Stabile">
-<title>Assistente Dott. Stabile AI</title>
+<title>Studio Stabile</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f4f8; min-height: 100vh; color: #1a202c; }
-.screen { display: none; padding: 20px; min-height: 100vh; }
-.screen.active { display: flex; flex-direction: column; }
-#screen-search { justify-content: center; align-items: center; background: linear-gradient(135deg, #1a4a8a, #2563eb); position: relative; }
-.logo { color: white; text-align: center; margin-bottom: 36px; }
-.logo h1 { font-size: 24px; font-weight: 700; }
-.logo p { font-size: 14px; opacity: 0.8; margin-top: 4px; }
-.search-box { background: white; border-radius: 20px; padding: 24px; width: 100%; max-width: 380px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-.search-box h2 { font-size: 16px; color: #4a5568; margin-bottom: 16px; text-align: center; }
-.input-group { display: flex; gap: 10px; margin-bottom: 16px; }
-.input-group input { flex: 1; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px 16px; font-size: 16px; outline: none; transition: border-color 0.2s; }
-.input-group input:focus { border-color: #2563eb; }
-.btn-mic { width: 52px; height: 52px; border-radius: 12px; border: none; background: #2563eb; color: white; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.btn-mic.listening { background: #dc2626; animation: pulse 1s infinite; }
-@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
-.btn-primary { width: 100%; padding: 16px; background: #2563eb; color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; }
-.status-msg { text-align: center; font-size: 13px; color: #718096; margin-top: 12px; min-height: 20px; }
-.status-msg.error { color: #dc2626; }
-.config-icon { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2); border: none; border-radius: 10px; width: 38px; height: 38px; font-size: 18px; cursor: pointer; color: white; display: flex; align-items: center; justify-content: center; }
-.top-bar { display: flex; align-items: center; gap: 12px; padding: 16px 0 20px; }
-.btn-back { width: 40px; height: 40px; border-radius: 10px; border: none; background: #e2e8f0; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-.top-bar h2 { font-size: 18px; font-weight: 700; flex: 1; }
-#screen-card { background: #f0f4f8; }
-.patient-header { background: linear-gradient(135deg, #1a4a8a, #2563eb); border-radius: 16px; padding: 20px; color: white; margin-bottom: 16px; }
-.patient-name { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-.patient-sub { font-size: 14px; opacity: 0.85; }
-.card-section { background: white; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.card-section h3 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #2563eb; margin-bottom: 10px; }
-.card-value { font-size: 15px; color: #2d3748; line-height: 1.5; }
-.card-value.empty { color: #a0aec0; font-style: italic; }
-.tag { display: inline-block; background: #ebf5ff; color: #1e40af; border-radius: 8px; padding: 4px 10px; font-size: 13px; margin: 3px 3px 3px 0; font-weight: 500; }
-.tag.alert { background: #fff5f5; color: #c53030; }
-.visit-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0f4f8; cursor: pointer; }
-.visit-item:last-child { border-bottom: none; }
-.visit-date { font-size: 13px; font-weight: 600; color: #2563eb; width: 80px; flex-shrink: 0; }
-.visit-motivo { font-size: 13px; color: #4a5568; flex: 1; }
-.visit-arrow { font-size: 12px; color: #a0aec0; }
-.btn-secretary { width: 100%; padding: 18px; background: #059669; color: white; border: none; border-radius: 16px; font-size: 17px; font-weight: 700; cursor: pointer; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(5,150,105,0.3); }
-#screen-secretary { background: #f0f4f8; }
-.sec-box { background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.sec-box h3 { font-size: 14px; color: #4a5568; margin-bottom: 8px; font-weight: 600; }
-.sec-patient-name { font-size: 18px; font-weight: 700; }
-.btn-mic-large { width: 80px; height: 80px; border-radius: 50%; border: none; background: #2563eb; color: white; font-size: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 8px 25px rgba(37,99,235,0.4); }
-.btn-mic-large.listening { background: #dc2626; animation: pulse 1s infinite; }
-.instruction { text-align: center; font-size: 14px; color: #718096; margin-bottom: 20px; line-height: 1.5; }
-.message-preview { background: #f7fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px; font-size: 15px; color: #2d3748; min-height: 80px; line-height: 1.5; margin-bottom: 16px; }
-.message-preview.empty { color: #a0aec0; font-style: italic; }
-textarea.message-edit { width: 100%; background: #f7fafc; border: 2px solid #2563eb; border-radius: 12px; padding: 14px; font-size: 15px; color: #2d3748; min-height: 100px; line-height: 1.5; font-family: inherit; resize: vertical; outline: none; margin-bottom: 16px; }
-.btn-send { width: 100%; padding: 18px; background: #059669; color: white; border: none; border-radius: 16px; font-size: 17px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(5,150,105,0.3); margin-bottom: 12px; }
-.btn-send:disabled { background: #a0aec0; box-shadow: none; cursor: default; }
-.btn-outline { width: 100%; padding: 14px; background: transparent; color: #2563eb; border: 2px solid #2563eb; border-radius: 16px; font-size: 15px; font-weight: 600; cursor: pointer; margin-bottom: 12px; }
-#screen-confirm { justify-content: center; align-items: center; text-align: center; background: #f0f4f8; }
-.confirm-icon { font-size: 64px; margin-bottom: 20px; }
-.confirm-title { font-size: 22px; font-weight: 700; color: #059669; margin-bottom: 10px; }
-.confirm-sub { font-size: 15px; color: #718096; margin-bottom: 40px; }
-.btn-home { padding: 16px 40px; background: #2563eb; color: white; border: none; border-radius: 16px; font-size: 16px; font-weight: 600; cursor: pointer; }
-#screen-config { background: #f0f4f8; }
-.config-card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.config-card label { display: block; font-size: 13px; font-weight: 600; color: #4a5568; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-.config-card input { width: 100%; border: 2px solid #e2e8f0; border-radius: 10px; padding: 12px; font-size: 14px; outline: none; }
-.config-card input:focus { border-color: #2563eb; }
-.config-card .hint { font-size: 12px; color: #718096; margin-top: 6px; line-height: 1.4; }
-.btn-save-config { width: 100%; padding: 16px; background: #2563eb; color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 8px; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f4f8;min-height:100vh;color:#1a202c}
+.screen{display:none;padding:20px;min-height:100vh}
+.screen.active{display:flex;flex-direction:column}
+#screen-search{justify-content:center;align-items:center;background:linear-gradient(135deg,#1a4a8a,#2563eb);position:relative}
+.logo{color:white;text-align:center;margin-bottom:36px}
+.logo h1{font-size:24px;font-weight:700}
+.logo p{font-size:14px;opacity:0.8;margin-top:4px}
+.search-box{background:white;border-radius:20px;padding:24px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.search-box h2{font-size:16px;color:#4a5568;margin-bottom:16px;text-align:center}
+.input-group{display:flex;gap:10px;margin-bottom:16px}
+.input-group input{flex:1;border:2px solid #e2e8f0;border-radius:12px;padding:14px 16px;font-size:16px;outline:none}
+.input-group input:focus{border-color:#2563eb}
+.btn-mic{width:52px;height:52px;border-radius:12px;border:none;background:#2563eb;color:white;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.btn-mic.listening{background:#dc2626;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.btn-primary{width:100%;padding:16px;background:#2563eb;color:white;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer}
+.status-msg{text-align:center;font-size:13px;color:#718096;margin-top:12px;min-height:20px}
+.status-msg.error{color:#dc2626}
+.config-icon{position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.2);border:none;border-radius:10px;width:38px;height:38px;font-size:18px;cursor:pointer;color:white;display:flex;align-items:center;justify-content:center}
+.top-bar{display:flex;align-items:center;gap:12px;padding:16px 0 20px}
+.btn-back{width:40px;height:40px;border-radius:10px;border:none;background:#e2e8f0;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.top-bar h2{font-size:18px;font-weight:700;flex:1}
+#screen-card{background:#f0f4f8}
+.patient-header{background:linear-gradient(135deg,#1a4a8a,#2563eb);border-radius:16px;padding:20px;color:white;margin-bottom:16px}
+.patient-name{font-size:22px;font-weight:700;margin-bottom:4px}
+.patient-sub{font-size:14px;opacity:0.85}
+.card-section{background:white;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.card-section h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#2563eb;margin-bottom:10px}
+.card-value{font-size:15px;color:#2d3748;line-height:1.5}
+.card-value.empty{color:#a0aec0;font-style:italic}
+.tag{display:inline-block;background:#ebf5ff;color:#1e40af;border-radius:8px;padding:4px 10px;font-size:13px;margin:3px 3px 3px 0;font-weight:500}
+.tag.alert{background:#fff5f5;color:#c53030}
+.visit-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f0f4f8;cursor:pointer}
+.visit-item:last-child{border-bottom:none}
+.visit-date{font-size:13px;font-weight:600;color:#2563eb;width:80px;flex-shrink:0}
+.visit-motivo{font-size:13px;color:#4a5568;flex:1}
+.visit-arrow{font-size:12px;color:#a0aec0}
+.btn-secretary{width:100%;padding:18px;background:#059669;color:white;border:none;border-radius:16px;font-size:17px;font-weight:700;cursor:pointer;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 15px rgba(5,150,105,0.3)}
+#screen-secretary{background:#f0f4f8}
+.sec-box{background:white;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.sec-box h3{font-size:14px;color:#4a5568;margin-bottom:8px;font-weight:600}
+.sec-patient-name{font-size:18px;font-weight:700}
+.btn-mic-large{width:80px;height:80px;border-radius:50%;border:none;background:#2563eb;color:white;font-size:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 8px 25px rgba(37,99,235,0.4)}
+.btn-mic-large.listening{background:#dc2626;animation:pulse 1s infinite}
+.instruction{text-align:center;font-size:14px;color:#718096;margin-bottom:20px;line-height:1.5}
+.message-preview{background:#f7fafc;border:2px solid #e2e8f0;border-radius:12px;padding:14px;font-size:15px;color:#2d3748;min-height:80px;line-height:1.5;margin-bottom:16px}
+.message-preview.empty{color:#a0aec0;font-style:italic}
+textarea.message-edit{width:100%;background:#f7fafc;border:2px solid #2563eb;border-radius:12px;padding:14px;font-size:15px;color:#2d3748;min-height:100px;line-height:1.5;font-family:inherit;resize:vertical;outline:none;margin-bottom:16px}
+.btn-send{width:100%;padding:18px;background:#059669;color:white;border:none;border-radius:16px;font-size:17px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 15px rgba(5,150,105,0.3);margin-bottom:12px}
+.btn-send:disabled{background:#a0aec0;box-shadow:none;cursor:default}
+.btn-outline{width:100%;padding:14px;background:transparent;color:#2563eb;border:2px solid #2563eb;border-radius:16px;font-size:15px;font-weight:600;cursor:pointer;margin-bottom:12px}
+#screen-confirm{justify-content:center;align-items:center;text-align:center;background:#f0f4f8}
+.confirm-icon{font-size:64px;margin-bottom:20px}
+.confirm-title{font-size:22px;font-weight:700;color:#059669;margin-bottom:10px}
+.confirm-sub{font-size:15px;color:#718096;margin-bottom:40px}
+.btn-home{padding:16px 40px;background:#2563eb;color:white;border:none;border-radius:16px;font-size:16px;font-weight:600;cursor:pointer}
+#screen-config{background:#f0f4f8}
+.config-card{background:white;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.config-card label{display:block;font-size:13px;font-weight:600;color:#4a5568;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px}
+.config-card input{width:100%;border:2px solid #e2e8f0;border-radius:10px;padding:12px;font-size:14px;outline:none}
+.config-card input:focus{border-color:#2563eb}
+.config-card .hint{font-size:12px;color:#718096;margin-top:6px;line-height:1.4}
+.btn-save-config{width:100%;padding:16px;background:#2563eb;color:white;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;margin-top:8px}
 </style>
 </head>
 <body>
@@ -82,7 +82,7 @@ textarea.message-edit { width: 100%; background: #f7fafc; border: 2px solid #256
   <div class="search-box">
     <h2>Cerca un paziente</h2>
     <div class="input-group">
-      <input type="text" id="search-input" placeholder="Nome e cognome…" onkeydown="if(event.key==='Enter') searchPatient()" autocomplete="off">
+      <input type="text" id="search-input" placeholder="Nome e cognome..." onkeydown="if(event.key==='Enter')searchPatient()" autocomplete="off">
       <button class="btn-mic" id="btn-mic-search" onclick="startVoiceSearch()">🎤</button>
     </div>
     <button class="btn-primary" onclick="searchPatient()">Cerca paziente</button>
@@ -99,13 +99,13 @@ textarea.message-edit { width: 100%; background: #f7fafc; border: 2px solid #256
     <div class="patient-name" id="card-nome">—</div>
     <div class="patient-sub" id="card-sub">—</div>
   </div>
-  <div class="card-section"><h3>🩺 Patologie</h3><div class="card-value" id="card-patologie">—</div></div>
-  <div class="card-section"><h3>⚠️ Allergie</h3><div class="card-value" id="card-allergie">—</div></div>
-  <div class="card-section"><h3>🔪 Interventi Precedenti</h3><div class="card-value" id="card-interventi">—</div></div>
+  <div class="card-section"><h3>🩺 Patologie</h3><div class="card-value" id="card-patologie"></div></div>
+  <div class="card-section"><h3>⚠️ Allergie</h3><div class="card-value" id="card-allergie"></div></div>
+  <div class="card-section"><h3>🔪 Interventi Precedenti</h3><div class="card-value" id="card-interventi"></div></div>
   <div class="card-section">
     <h3>📋 Ultima Visita — <span id="card-data-ultima"></span></h3>
-    <div class="card-value" id="card-motivo">—</div>
-    <div id="card-note" style="margin-top:6px;font-size:13px;color:#718096;"></div>
+    <div class="card-value" id="card-motivo"></div>
+    <div id="card-note" style="margin-top:6px;font-size:13px;color:#718096"></div>
   </div>
   <div class="card-section" id="section-precedenti" style="display:none">
     <h3>📅 Visite Precedenti</h3>
@@ -122,9 +122,9 @@ textarea.message-edit { width: 100%; background: #f7fafc; border: 2px solid #256
   <div class="sec-box"><h3>Paziente</h3><div class="sec-patient-name" id="sec-patient-name">—</div></div>
   <div class="sec-box">
     <h3>Cosa comunicare?</h3>
-    <p class="instruction">Tocca il microfono e ditta il messaggio.<br>Es: "Fissa appuntamento giovedì alle 11"</p>
+    <p class="instruction">Tocca il microfono e ditta il messaggio.</p>
     <button class="btn-mic-large" id="btn-mic-sec" onclick="startVoiceSecretary()">🎤</button>
-    <div id="message-display" class="message-preview empty">Il messaggio apparirà qui…</div>
+    <div id="message-display" class="message-preview empty">Il messaggio apparira qui...</div>
   </div>
   <button class="btn-outline" id="btn-edit-msg" onclick="editMessage()" style="display:none">✏️ Modifica testo</button>
   <button class="btn-send" id="btn-send" onclick="sendToSecretary()" disabled>📤 Invia alla Segreteria</button>
@@ -153,30 +153,140 @@ textarea.message-edit { width: 100%; background: #f7fafc; border: 2px solid #256
     <p class="hint">Lo creiamo insieme nel prossimo passaggio</p>
   </div>
   <button class="btn-save-config" onclick="saveConfig()">💾 Salva</button>
-  <div class="status-msg" id="config-status" style="margin-top:12px;"></div>
+  <div class="status-msg" id="config-status" style="margin-top:12px"></div>
 </div>
 
 <script>
-const SECRET_TOKEN = 'ZCq3wd0FJzsbEFHk_qXxdg';
-let CONFIG = {
-  scriptUrl:  localStorage.getItem('scriptUrl')  || 'https://script.google.com/macros/s/AKfycbwVZBdYbTo3NoAb3HN-YL6FQNDuJH5dkVU4ykCwmIhaZD7jcxO8N8han8lJwmHFaPqBkA/exec',
-  webhookUrl: localStorage.getItem('webhookUrl') || ''
-};
-let currentPatient = null, allVisits = [], secretaryMessage = '';
+var SECRET_TOKEN='ZCq3wd0FJzsbEFHk_qXxdg';
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwVZBdYbTo3NoAb3HN-YL6FQNDuJH5dkVU4ykCwmIhaZD7jcxO8N8han8lJwmHFaPqBkA/exec';
+var CONFIG={scriptUrl:localStorage.getItem('scriptUrl')||SCRIPT_URL,webhookUrl:localStorage.getItem('webhookUrl')||''};
+var currentPatient=null,allVisits=[],secretaryMessage='';
 
-function showScreen(name) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen-' + name).classList.add('active');
-  window.scrollTo(0, 0);
+function showScreen(n){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});document.getElementById('screen-'+n).classList.add('active');window.scrollTo(0,0)}
+function showConfig(){document.getElementById('cfg-script-url').value=CONFIG.scriptUrl;document.getElementById('cfg-webhook-url').value=CONFIG.webhookUrl;showScreen('config')}
+function saveConfig(){CONFIG.scriptUrl=document.getElementById('cfg-script-url').value.trim();CONFIG.webhookUrl=document.getElementById('cfg-webhook-url').value.trim();localStorage.setItem('scriptUrl',CONFIG.scriptUrl);localStorage.setItem('webhookUrl',CONFIG.webhookUrl);document.getElementById('config-status').textContent='Salvato!';setTimeout(function(){showScreen('search')},1000)}
+function goHome(){currentPatient=null;allVisits=[];secretaryMessage='';document.getElementById('search-input').value='';document.getElementById('search-status').textContent='';resetSecretaryUI();showScreen('search')}
+
+function searchPatient(){
+  var query=document.getElementById('search-input').value.trim();
+  var status=document.getElementById('search-status');
+  if(!query){status.textContent='Inserisci il nome del paziente';status.className='status-msg error';return}
+  if(!CONFIG.scriptUrl){status.textContent='Configura prima il database';status.className='status-msg error';return}
+  status.textContent='Ricerca in corso...';status.className='status-msg';
+  var old=document.getElementById('_jp');
+  if(old)old.parentNode.removeChild(old);
+  if(window._jpcb)try{delete window._jpcb}catch(e){}
+  window._jpcb=function(data){
+    var s=document.getElementById('_jp');
+    if(s)s.parentNode.removeChild(s);
+    try{delete window._jpcb}catch(e){}
+    if(data.error){status.textContent='Errore: '+data.error;status.className='status-msg error';return}
+    if(!data.patients||data.patients.length===0){status.textContent='Nessun paziente trovato';status.className='status-msg error';return}
+    allVisits=data.patients;currentPatient=data.patients[0];
+    status.textContent='';showPatientCard();
+  };
+  var sc=document.createElement('script');
+  sc.id='_jp';
+  sc.src=CONFIG.scriptUrl+'?token='+encodeURIComponent(SECRET_TOKEN)+'&q='+encodeURIComponent(query)+'&callback=_jpcb';
+  sc.onerror=function(){if(sc.parentNode)sc.parentNode.removeChild(sc);try{delete window._jpcb}catch(e){}status.textContent='Errore connessione';status.className='status-msg error'};
+  document.head.appendChild(sc);
+  setTimeout(function(){if(window._jpcb){var s=document.getElementById('_jp');if(s&&s.parentNode)s.parentNode.removeChild(s);try{delete window._jpcb}catch(e){}status.textContent='Timeout - riprova';status.className='status-msg error'}},10000);
 }
-function showConfig() {
-  document.getElementById('cfg-script-url').value  = CONFIG.scriptUrl;
-  document.getElementById('cfg-webhook-url').value = CONFIG.webhookUrl;
-  showScreen('config');
+
+function showPatientCard(){
+  var p=currentPatient;
+  var nome=[p.nome,p.cognome].filter(Boolean).join(' ')||'—';
+  document.getElementById('card-nome').textContent=nome;
+  document.getElementById('card-sub').textContent=(p.eta?p.eta+' anni':'')+(p.telefono?'  •  '+p.telefono:'');
+  document.getElementById('card-data-ultima').textContent=p.data_visita||'';
+  setVal('card-patologie',p.patologie,false);
+  setVal('card-allergie',p.allergie,true);
+  setVal('card-interventi',p.interventi_precedenti||p.interventi,false);
+  setVal('card-motivo',p.motivo_visita||p.motivo,false);
+  document.getElementById('card-note').textContent=p.note||'';
+  document.getElementById('sec-patient-name').textContent=nome;
+  var prev=allVisits.slice(1);
+  var sec=document.getElementById('section-precedenti');
+  var lst=document.getElementById('card-visite-list');
+  lst.innerHTML='';
+  if(prev.length>0){
+    sec.style.display='block';
+    prev.forEach(function(v,i){
+      var d=document.createElement('div');d.className='visit-item';
+      d.innerHTML='<span class="visit-date">'+(v.data_visita||'—')+'</span><span class="visit-motivo">'+(v.motivo_visita||v.motivo||'—')+'</span><span class="visit-arrow">›</span>';
+      d.onclick=function(){showVisitDetail(i+1)};lst.appendChild(d);
+    });
+  }else{sec.style.display='none'}
+  showScreen('card');
 }
-function saveConfig() {
-  CONFIG.scriptUrl  = document.getElementById('cfg-script-url').value.trim();
-  CONFIG.webhookUrl = document.getElementById('cfg-webhook-url').value.trim();
-  localStorage.setItem('scriptUrl',  CONFIG.scriptUrl);
-  localStorage.setItem('webhookUrl', CONFIG.webhookUrl);
-  document.getElementById('config-status').textContent = '✅ Salvato!';
+
+function showVisitDetail(i){var v=allVisits[i];document.getElementById('card-data-ultima').textContent=v.data_visita||'';setVal('card-motivo',v.motivo_visita||v.motivo,false);document.getElementById('card-note').textContent=v.note||'';window.scrollTo(0,0)}
+
+function setVal(id,value,isAlert){
+  var el=document.getElementById(id);
+  if(!value||['—','nessuna','nessuno',''].indexOf((value||'').toLowerCase())>=0){el.textContent='Nessuna';el.className='card-value empty';return}
+  el.className='card-value';el.innerHTML='';
+  value.split(/[,;\/]/).forEach(function(item){
+    item=item.trim();if(!item)return;
+    var sp=document.createElement('span');sp.className='tag'+(isAlert?' alert':'');sp.textContent=item;el.appendChild(sp);
+  });
+}
+
+function showSecretary(){resetSecretaryUI();showScreen('secretary')}
+function resetSecretaryUI(){
+  secretaryMessage='';
+  var disp=document.getElementById('message-display');
+  disp.textContent='Il messaggio apparira qui...';disp.className='message-preview empty';disp.style.display='block';
+  document.getElementById('btn-send').disabled=true;
+  document.getElementById('btn-edit-msg').style.display='none';
+  var ta=document.getElementById('msg-ta');if(ta&&ta.parentNode)ta.parentNode.removeChild(ta);
+}
+function editMessage(){
+  var disp=document.getElementById('message-display');
+  var ta=document.getElementById('msg-ta');
+  if(ta){secretaryMessage=ta.value;ta.parentNode.removeChild(ta);disp.textContent=secretaryMessage;disp.className='message-preview';disp.style.display='block';document.getElementById('btn-edit-msg').textContent='✏️ Modifica testo';document.getElementById('btn-send').disabled=!secretaryMessage.trim();return}
+  var t=document.createElement('textarea');t.id='msg-ta';t.className='message-edit';t.value=secretaryMessage;
+  t.oninput=function(){secretaryMessage=t.value;document.getElementById('btn-send').disabled=!secretaryMessage.trim()};
+  disp.style.display='none';disp.parentNode.insertBefore(t,disp.nextSibling);
+  document.getElementById('btn-edit-msg').textContent='✅ Usa questo testo';t.focus();
+}
+function sendToSecretary(){
+  if(!secretaryMessage.trim())return;
+  var btn=document.getElementById('btn-send');btn.disabled=true;btn.textContent='Invio...';
+  var nome=currentPatient?[currentPatient.nome,currentPatient.cognome].filter(Boolean).join(' '):'';
+  var payload={paziente:nome,messaggio:secretaryMessage,eta:(currentPatient&&currentPatient.eta)||'',patologie:(currentPatient&&currentPatient.patologie)||'',allergie:(currentPatient&&currentPatient.allergie)||'',telefono:(currentPatient&&currentPatient.telefono)||''};
+  if(CONFIG.webhookUrl){
+    var xhr=new XMLHttpRequest();xhr.open('POST',CONFIG.webhookUrl);xhr.setRequestHeader('Content-Type','application/json');xhr.send(JSON.stringify(payload));
+  }
+  showScreen('confirm');
+}
+
+function getSR(){var SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return null;var r=new SR();r.lang='it-IT';r.interimResults=false;r.maxAlternatives=1;return r}
+function startVoiceSearch(){
+  var btn=document.getElementById('btn-mic-search');
+  var status=document.getElementById('search-status');
+  var input=document.getElementById('search-input');
+  var r=getSR();
+  if(!r){status.textContent='Dettatura non disponibile';status.className='status-msg error';return}
+  btn.classList.add('listening');status.textContent='Sto ascoltando...';status.className='status-msg';
+  r.onresult=function(e){input.value=e.results[0][0].transcript;btn.classList.remove('listening');status.textContent='';setTimeout(searchPatient,300)};
+  r.onerror=function(){btn.classList.remove('listening');status.textContent='Non ho sentito. Riprova.';status.className='status-msg error'};
+  r.onend=function(){btn.classList.remove('listening')};
+  r.start();
+}
+function startVoiceSecretary(){
+  var btn=document.getElementById('btn-mic-sec');
+  var disp=document.getElementById('message-display');
+  var r=getSR();
+  if(!r){editMessage();return}
+  btn.classList.add('listening');disp.textContent='Sto ascoltando...';disp.className='message-preview';disp.style.display='block';
+  r.onresult=function(e){secretaryMessage=e.results[0][0].transcript;disp.textContent=secretaryMessage;disp.className='message-preview';btn.classList.remove('listening');document.getElementById('btn-send').disabled=false;document.getElementById('btn-edit-msg').style.display='block'};
+  r.onerror=function(){btn.classList.remove('listening');disp.textContent='Non ho sentito. Riprova.'};
+  r.onend=function(){btn.classList.remove('listening')};
+  r.start();
+}
+
+window.onload=function(){if(!CONFIG.scriptUrl)document.getElementById('search-status').textContent='Configura il database (icona ingranaggio in alto a destra)'};
+</script>
+</body>
+</html>
